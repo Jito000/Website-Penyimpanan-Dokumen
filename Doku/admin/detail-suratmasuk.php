@@ -127,6 +127,13 @@ include "login/ceksession.php";
                           <td> </td>
                         </tr>
                         <tr>
+                          <td>Kode Negara</td>
+                          <td><?php echo $data['pengirim_kode_negara']?></td>
+                        </tr>
+                        <tr>
+                          <td>Nama Negara</td>
+                          <td><?php echo $data['pengirim_nama_negara']?></td>
+                        <tr>
                           <td>Nama</td>
                           <td><?php echo $data['pengirim_nama']?></td>
                         </tr>
@@ -139,6 +146,13 @@ include "login/ceksession.php";
                           <td><h2>Data Penjual</h2> </td>
                           <td> </td>
                         </tr>
+                        <tr>
+                          <td>Kode Negara</td>
+                          <td><?php echo $data['penjual_kode_negara']?></td>
+                        </tr>
+                        <tr>
+                          <td>Nama Negara</td>
+                          <td><?php echo $data['penjual_nama_negara']?></td>
                         <tr>
                           <td>Nama</td>
                           <td><?php echo $data['penjual_nama']?></td>
@@ -169,7 +183,10 @@ include "login/ceksession.php";
                           <td>Alamat</td>
                           <td><?php echo $data['importir_alamat']?></td>
                         </tr>
-                        <tr></tr><!-- agar warna data pengirim menjadi putih, bisa dihapus jika perlu -->
+                        <tr>
+                          <td>Status Ijin</td>
+                          <td><?php echo $data['importir_ijin']?></td>
+                        </tr>
                         <tr>
                           <td><h2>Data Pemilik Barang</h2> </td>
                           <td> </td>
@@ -196,6 +213,18 @@ include "login/ceksession.php";
                           <td> </td>
                         </tr>
                         <tr>
+                          <td>Nomor Pendaftaran</td>
+                          <td><?php echo $data['pendaftaran_nomor']?></td>
+                        </tr>
+                        <tr>
+                          <td>Tanggal Pendaftaran</td>
+                          <td><?php echo $data['pendaftaran_tanggal']?></td>
+                        </tr>
+                        <tr>
+                          <td>Respon</td>
+                          <td><?php echo $data['respon']?></td>
+                        </tr>
+                        <tr>
                           <td>Cara Pengangkutan</td>
                           <td><?php echo $data['cara_angkut']?></td>
                         </tr>
@@ -211,10 +240,7 @@ include "login/ceksession.php";
                           <td>Pelabuhan Muat</td>
                           <td><?php echo $data['pelabuhan_muat']?></td>
                         </tr>
-                        <tr>
-                          <td>Pelabuhan Transit</td>
-                          <td><?php echo $data['pelabuhan_transit']?></td>
-                        </tr>
+                        
                         <tr>
                           <td>Pelabuhan Tujuan</td>
                           <td><?php echo $data['pelabuhan_tujuan']?></td>
@@ -233,6 +259,10 @@ include "login/ceksession.php";
                           <td><?php echo $data['invoice_tanggal']?></td>
                         </tr>
                         <tr>
+                          <td>Cara Transaksi</td>
+                          <td><?php echo $data['transaksi']?></td>
+                        </tr>
+                        <tr>
                           <td>No. BL</td>
                           <td><?php echo $data['bl_nomor']?></td>
                         </tr>
@@ -249,6 +279,9 @@ include "login/ceksession.php";
                           <td><?php echo $data['manifest_pos']?></td>
                         </tr>
                         <tr>
+                          <td>SubPos Manifest</td>
+                          <td><?php echo $data['manifest_subpos']?></td>
+                        </tr>
                         <tr>
                           <td>Tanggal Manifest</td>
                           <td><?php echo $data['manifest_tanggal']?></td>
@@ -257,14 +290,12 @@ include "login/ceksession.php";
                           <td>Tempat Penimbunan</td>
                           <td><?php echo $data['tempat_penimbunan']?></td>
                         </tr>
+                        <tr></tr><!-- agar warna data pengirim menjadi putih, bisa dihapus jika perlu -->
                         <tr>
                           <td><h2>Lain-lain</h2> </td>
                           <td> </td>
                         </tr>
-                        <tr>
-                          <td>Valuta</td>
-                          <td><?php echo $data['valuta']?></td>
-                        </tr>
+                        
                         <tr>
                           <td>Nilai CIF</td>
                           <td><?php echo $data['nilai_cif']?></td>
@@ -276,6 +307,10 @@ include "login/ceksession.php";
                         <tr>
                           <td>FREIGHT</td>
                           <td><?php echo $data['freight']?></td>
+                        </tr>
+                        <tr>
+                          <td>Kurs</td>
+                          <td><?php echo $data['kurs']?></td>
                         </tr>
                         <tr>
                           <td>NDPBM</td>
@@ -303,12 +338,23 @@ include "login/ceksession.php";
                           <td><?php echo $data['berat_bersih']?></td>
                         </tr>
                         <tr>
-                          <td>HS Code</td>
-                          <td><?php echo $data['hs_code']?></td>
+                          <td><h2>Detail Dokumen</h2> </td>
+                          <td> </td>
+                        </tr>
+                        <tr>
+                          <td>Jenis File</td>
+                          <td><?php echo $data['jenis_file']?></td>
                         </tr>
                         <tr>
                           <td>File</td>
-                          <td><a href= "<?php echo 'surat_masuk/'.$data['file_suratmasuk'].''?>"><b>Unduh File</b></a></td>
+                          <?php
+                            if($data['file_suratmasuk'] == null){
+                              echo '<td><b>Tidak ada file</b></td>';
+                            }
+                            else {
+                              echo '<td><a href= "surat_masuk/'.$data['file_suratmasuk'].'"><b>Unduh File</b></a></td>';
+                            }
+                          ?>
                         </tr>
                         <tr>
                           <td>Operator</td>
@@ -318,7 +364,7 @@ include "login/ceksession.php";
                       </tbody>
                     </table>
                     <div class="text-right">
-                      <a href = "datasuratmasuk.php" class="btn btn-danger"><span class="glyphicon glyphicon-arrow-left"></span> Kembali</a>
+                      <a href = "index.php" class="btn btn-danger"><span class="glyphicon glyphicon-arrow-left"></span> Kembali</a>
                       <a href = "editsuratmasuk.php?id_suratmasuk=<?php echo $data['id_suratmasuk']?>"class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Edit</a>
                       <a href = "detail-datatable.php?id_suratmasuk=<?php echo $data['id_suratmasuk']?>"class="btn btn-primary"></span> Lihat Pungutan</a>
                     </div>

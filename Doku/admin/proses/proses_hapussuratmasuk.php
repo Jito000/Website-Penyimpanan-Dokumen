@@ -24,10 +24,10 @@ if (isset($_GET['id_suratmasuk'])) {
             if ($query){
                 unlink("../surat_masuk/".$data2['file_suratmasuk']);
                 echo "<Center><h2><br>Data Surat masuk telah Dihapus</h2></center>
-				<meta http-equiv='refresh' content='2;url=../datasuratmasuk.php'>";
+				<meta http-equiv='refresh' content='2;url=../index.php'>";
             }		else{
 			echo "<Center><h2><br>GAGAL MENGHAPUS<br>Silahkan Ulangi</h2></center>
-				<meta http-equiv='refresh' content='2;url=../datasuratmasuk.php'>";
+				<meta http-equiv='refresh' content='2;url=../index.php'>";
 	}	
 }	
 }						

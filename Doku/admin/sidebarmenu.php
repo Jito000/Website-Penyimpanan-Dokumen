@@ -12,17 +12,7 @@
 
             <div class="clearfix"></div>
 
-            <!-- menu profile quick info -->
-            <div class="profile clearfix">
-              <div class="profile_pic">
-                <img src="images/<?php echo $data['gambar']; ?>" height="55" width="55" alt="" class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span>Selamat Datang,</span>
-                <h2><?php echo $_SESSION['nama'];?></h2>
-              </div>
-            </div>
-            <!-- /menu profile quick info -->
+            
 
             <br />
             <!-- sidebar menu -->
@@ -30,8 +20,7 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a href="datasuratmasuk.php"><i class="fa fa-inbox"></i>Dokumen</a></li>  
-                  <li><a><i class="fa fa-users"></i> Akun <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="glyphicon glyphicon-user"></i> &emsp; Akun </a>
                     <ul class="nav child_menu">
                       <li><a href="profile.php"><i class="fa"></i>Profil</a></li>
                       <li><a href="../koneksi/proses_logout.php"><i class="fa"></i>Logout</a></li>

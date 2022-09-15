@@ -148,13 +148,13 @@ include "login/ceksession.php";
                               <td><input value="<?php echo $data["pph_lunas"]?>"          id="pph_lunas"      type="text" class="ifEmpty form-control col-md-7 col-xs-12">  </td>
                             </tr>
                             <tr>
-                              <td><label class="control-label col-md-3 col-sm-3 col-xs-12" >Total </td>
-                              <td><input value="<?php echo $data["total_dibayar"]?>"      id="total_dibayar"    type="text" class="ifEmpty form-control col-md-7 col-xs-12">  </td>
-                              <td><input value="<?php echo $data["total_ditanggung"]?>"   id="total_ditanggung" type="text" class="ifEmpty form-control col-md-7 col-xs-12"> </td>
-                              <td><input value="<?php echo $data["total_ditunda"]?>"      id="total_ditunda"    type="text" class="ifEmpty form-control col-md-7 col-xs-12">  </td>
-                              <td><input value="<?php echo $data["total_tidak"]?>"        id="total_tidak"      type="text" class="ifEmpty form-control col-md-7 col-xs-12"> </td>
-                              <td><input value="<?php echo $data["total_bebas"]?>"        id="total_bebas"      type="text" class="ifEmpty form-control col-md-7 col-xs-12"> </td>
-                              <td><input value="<?php echo $data["total_lunas"]?>"        id="total_lunas"      type="text" class="ifEmpty form-control col-md-7 col-xs-12">  </td>                            </tr>
+                              <td><label class="control-label col-md-3 col-sm-3 col-xs-12" >Total <button  onclick="hitungTotalDibayar()"  class="btn btn-primary"> Hitung</button></td>
+                              <td><input value="<?php echo $data["total_dibayar"]?>"      id="total_dibayar"    readonly="readonly" type="text" class="ifEmpty form-control col-md-7 col-xs-12">  </td>
+                              <td><input value="<?php echo $data["total_ditanggung"]?>"   id="total_ditanggung" readonly="readonly" type="text" class="ifEmpty form-control col-md-7 col-xs-12"> </td>
+                              <td><input value="<?php echo $data["total_ditunda"]?>"      id="total_ditunda"    readonly="readonly" type="text" class="ifEmpty form-control col-md-7 col-xs-12">  </td>
+                              <td><input value="<?php echo $data["total_tidak"]?>"        id="total_tidak"      readonly="readonly" type="text" class="ifEmpty form-control col-md-7 col-xs-12"> </td>
+                              <td><input value="<?php echo $data["total_bebas"]?>"        id="total_bebas"      readonly="readonly" type="text" class="ifEmpty form-control col-md-7 col-xs-12"> </td>
+                              <td><input value="<?php echo $data["total_lunas"]?>"        id="total_lunas"      readonly="readonly" type="text" class="ifEmpty form-control col-md-7 col-xs-12">  </td>                            </tr>
                             
                       </tbody>
                     </table>
@@ -203,12 +203,12 @@ include "login/ceksession.php";
                       <input id="ppnbm_bebas_s"       name="ppnbm_bebas"          type="hidden" class="form-control col-md-7 col-xs-12"> 
                       <input id="ppnbm_lunas_s"       name="ppnbm_lunas"          type="hidden" class="form-control col-md-7 col-xs-12">
 
-                      <input id="pph_dibayar_s"       name="pph_dibayar"        type="hidden" class="form-control col-md-7 col-xs-12"> 
-                      <input id="pph_ditanggung_s"    name="pph_ditanggung"     type="hidden" class="form-control col-md-7 col-xs-12">
-                      <input id="pph_ditunda_s"       name="pph_ditunda"        type="hidden" class="form-control col-md-7 col-xs-12"> 
-                      <input id="pph_tidak_s"         name="pph_tidak"          type="hidden" class="form-control col-md-7 col-xs-12"> 
-                      <input id="pph_bebas_s"         name="pph_bebas"          type="hidden" class="form-control col-md-7 col-xs-12"> 
-                      <input id="pph_lunas_s"         name="pph_lunas"          type="hidden" class="form-control col-md-7 col-xs-12">
+                      <input id="pph_dibayar_s"       name="pph_dibayar"          type="hidden" class="form-control col-md-7 col-xs-12"> 
+                      <input id="pph_ditanggung_s"    name="pph_ditanggung"       type="hidden" class="form-control col-md-7 col-xs-12">
+                      <input id="pph_ditunda_s"       name="pph_ditunda"          type="hidden" class="form-control col-md-7 col-xs-12"> 
+                      <input id="pph_tidak_s"         name="pph_tidak"            type="hidden" class="form-control col-md-7 col-xs-12"> 
+                      <input id="pph_bebas_s"         name="pph_bebas"            type="hidden" class="form-control col-md-7 col-xs-12"> 
+                      <input id="pph_lunas_s"         name="pph_lunas"            type="hidden" class="form-control col-md-7 col-xs-12">
 
                       <input id="total_dibayar_s"     name="total_dibayar"        type="hidden" class="form-control col-md-7 col-xs-12"> 
                       <input id="total_ditanggung_s"  name="total_ditanggung"     type="hidden" class="form-control col-md-7 col-xs-12">
@@ -275,35 +275,110 @@ include "login/ceksession.php";
     <!-- Custom Theme Scripts -->
     <script src="../assets/build/js/custom.min.js"></script>
     <script type="text/javascript" language="JavaScript">
-      $('input.ifEmpty').focusout(function(event){
-        if(event.which >= 37 && event.which <= 40){return;}
-  
-        $(this).val(function(index, value){
       
-          if(value==''){return value='0';}  //jika inputan kosong diganti 0
-          else{return value=value;}   //intinya jangan dihapus nanti eror
-      
-        });
-  
-      });
       $('input.ifEmpty').keyup(function(event){
       if(event.which >= 37 && event.which <= 40){return;}
       
         $(this).val(function(index, value){
-          
-          
-            return value
-          .replace(/([^0-9])/g,"")  // mencari yang bukan (^) angka 0-9 kecuali . mengganti dengan nilai kosong
+          if(value=='.'){
+            return value='0.';//.replace(/[\b0]/g,"0.");  //jika karakter pertama adalah 0 otomatis menambah . agar menjadi desimal
+          }
+          else if(/[.]/g.test(value)){
+            if(/[.]{2,}/g.test(value) || /[0]{2,}/g.test(value)){
+              return value='';
+            }
+            return value.replace(/([^0-9.])/g,"").replace(/\B(?=(\d{3})+(?!\d))/g,",").replace(/(\d{3})$/g,"");
+            
+          }
+          else{
+            return value      
+          .replace(/([^0-9.])/g,"")  // mencari yang bukan (^) angka 0-9 kecuali . mengganti dengan nilai kosong
           .replace(/\B(?=(\d{3})+(?!\d))/g,",") // membuat otomatis angka menjadi ribuan, ratusan dll
           
-          
-          
+          }
         });
       
       });
+     
+      $('input.ifEmpty').focusout(function(event){
+      if(event.which >= 37 && event.which <= 40){return;}
+      
+        $(this).val(function(index, value){
+          if(value==''){return value = '0';}  //jika inputan kosong diganti 0
+          else{return value = value;}   //intinya jangan dihapus nanti eror
+        });
+      
+      });
+      function hitungTotalDibayar(){
+        document.getElementById('total_dibayar').value 
+          = ( parseFloat(document.getElementById('bm_dibayar').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('bmkite_dibayar').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('bmt_dibayar').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('cukai_dibayar').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('pph_dibayar').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('ppn_dibayar').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('ppnbm_dibayar').value.replace(/([^0-9.])/g,"") )
+          );
+          document.getElementById('total_dibayar').value = document.getElementById('total_dibayar').value.replace(/\B(?=(\d{3})+(?!\d))/g,",");
 
+          document.getElementById('total_ditanggung').value 
+          = ( parseFloat(document.getElementById('bm_ditanggung').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('bmkite_ditanggung').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('bmt_ditanggung').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('cukai_ditanggung').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('pph_ditanggung').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('ppn_ditanggung').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('ppnbm_ditanggung').value.replace(/([^0-9.])/g,"") )
+          );
+          document.getElementById('total_ditanggung').value = document.getElementById('total_ditanggung').value.replace(/\B(?=(\d{3})+(?!\d))/g,",");
+
+          document.getElementById('total_ditunda').value 
+          = ( parseFloat(document.getElementById('bm_ditunda').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('bmkite_ditunda').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('bmt_ditunda').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('cukai_ditunda').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('pph_ditunda').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('ppn_ditunda').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('ppnbm_ditunda').value.replace(/([^0-9.])/g,"") )
+          );
+          document.getElementById('total_ditunda').value = document.getElementById('total_ditunda').value.replace(/\B(?=(\d{3})+(?!\d))/g,",");
+
+          document.getElementById('total_tidak').value 
+          = ( parseFloat(document.getElementById('bm_tidak').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('bmkite_tidak').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('bmt_tidak').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('cukai_tidak').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('pph_tidak').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('ppn_tidak').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('ppnbm_tidak').value.replace(/([^0-9.])/g,"") )
+          );
+          document.getElementById('total_tidak').value = document.getElementById('total_tidak').value.replace(/\B(?=(\d{3})+(?!\d))/g,",");
+
+          document.getElementById('total_bebas').value 
+          = ( parseFloat(document.getElementById('bm_bebas').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('bmkite_bebas').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('bmt_bebas').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('cukai_bebas').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('pph_bebas').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('ppn_bebas').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('ppnbm_bebas').value.replace(/([^0-9.])/g,"") )
+          );
+          document.getElementById('total_bebas').value = document.getElementById('total_bebas').value.replace(/\B(?=(\d{3})+(?!\d))/g,",");
+
+          document.getElementById('total_lunas').value 
+          = ( parseFloat(document.getElementById('bm_lunas').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('bmkite_lunas').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('bmt_lunas').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('cukai_lunas').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('pph_lunas').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('ppn_lunas').value.replace(/([^0-9.])/g,"") )
+            + parseFloat(document.getElementById('ppnbm_lunas').value.replace(/([^0-9.])/g,"") )
+          );
+          document.getElementById('total_lunas').value = document.getElementById('total_lunas').value.replace(/\B(?=(\d{3})+(?!\d))/g,",");
+      }
       function inputData()
         {
+        
         document.getElementById("bm_dibayar_s").value         = document.getElementById("bm_dibayar").value;
         document.getElementById("bm_ditanggung_s").value      = document.getElementById("bm_ditanggung").value;
         document.getElementById("bm_ditunda_s").value         = document.getElementById("bm_ditunda").value;

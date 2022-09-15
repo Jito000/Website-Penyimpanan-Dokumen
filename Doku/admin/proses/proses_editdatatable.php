@@ -134,7 +134,7 @@
 					Loading...</h2>
 			</center>
 		
-		  <meta http-equiv='refresh' content='2;url=../datasuratmasuk.php'>
+		  <meta http-equiv='refresh' content='2;url=../index.php'>
 	  </html>";;
 		
 		
